@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutmeComponent } from './components/pages/aboutme/aboutme.component';
-import { ErrorComponent } from './components/pages/error/error.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 import { SigninComponent } from './components/pages/signin/signin.component';
 
 const routes: Routes = [
@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: 'about-me', component: AboutmeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SigninComponent },
-  { path: '404', component: ErrorComponent },
-  { path: '**', component: ErrorComponent }
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({
