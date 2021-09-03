@@ -9,6 +9,8 @@ import { AboutmeComponent } from './components/pages/aboutme/aboutme.component';
 import { NavbarComponent } from './components/structure/navbar/navbar.component';
 import { SigninComponent } from './components/pages/signin/signin.component';
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
+import { GithubService } from './services/github.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { NotfoundComponent } from './components/pages/notfound/notfound.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
