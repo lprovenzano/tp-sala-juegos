@@ -13,20 +13,8 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(id : string) : Observable<GithubUser> | any {
+  getUser(id : string) : Observable<IGithubUser> {
     const url = `${this.baseUrl}/users/${id}`.toString();
-    return this.http.get<any>(url);
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      this.log(error); 
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    console.error(`GithubService: ${message}`);
+    return this.http.get<IGithubUser>(url);
   }
 }

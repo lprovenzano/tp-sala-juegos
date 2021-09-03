@@ -8,16 +8,24 @@ import { GithubService } from 'src/app/services/github.service';
   styleUrls: ['./aboutme.component.scss']
 })
 
-@Inject
 export class AboutmeComponent implements OnInit {
 
   user!: GithubUser
 
-  constructor(private githubService: GithubService) { }
+  constructor(private githubService: GithubService) { 
+    
+  }
 
   ngOnInit(): void {
-    this.user = this.githubService.getUser('lprovenzano');
-    console.log(this.user)
+    this.githubService.getUser('lprovenzano')
+    .subscribe((resp) => {
+      this.user = new GithubUser(
+          resp['avatar_url'], 
+          resp['name'], 
+          resp['location'], 
+          "Tedsakldhsjksadlhdsjkahasdjkdsahlskadjhsajklsahdsldksajhdsdshadsasdjklhdsajkldsahdsajkldsahadsjklhsadjkdhaslkjdhsajlkdhas"
+        )
+    });
   }
 
 }
