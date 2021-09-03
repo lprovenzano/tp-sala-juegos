@@ -23,7 +23,7 @@ export class AboutmeComponent implements OnInit {
           resp['avatar_url'], 
           resp['name'], 
           resp['location'], 
-          "Tedsakldhsjksadlhdsjkahasdjkdsahlskadjhsajklsahdsldksajhdsdshadsasdjklhdsajkldsahdsajkldsahadsjklhsadjkdhaslkjdhsajlkdhas"
+          "Descripción del juego a desarrollar..."
         )
     });
   }
