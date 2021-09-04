@@ -1,10 +1,34 @@
-<div class="row about">
-    <div class="col-6">
-        <img class="img-responsive" src={{user.avatarUrl}} width="300" height="300"/>
+<!--<img class="imf-fluid img-thumbnail" src={{user.avatarUrl}} width="300" height="300"/>-->
+<!--<h1>{{user.name}}</h1>-->
+<!--<h4><span>Location:</span> {{user.location}}</h4>-->
+<!--<h4><span>Juego:</span> {{user.gameDescription}}</h4>-->
+
+<div class="container-fluid p-0">
+
+  <h1 class="h3 mb-3">Quién soy</h1>
+
+  <div class="row">
+    <div class="col-md-12 col-xl-12">
+      <div class="card mb-3">
+        <div class="card-body text-center">
+          <img src="{{user.avatarUrl}}" alt="{{user.name}}" class="img-fluid img-thumbnail rounded-circle mb-2"
+               width="128"
+               height="128">
+          <h5 class="card-title mb-0"><strong>{{user.name}}</strong></h5>
+          <div class="text-muted mb-2">{{user.bio}}</div>
+
+          <div>
+            <a class="btn btn-primary btn-sm" href="{{user.url}}" target="_blank"><i class="bi bi-github"></i>
+              Follow</a>
+          </div>
+        </div>
+        <hr class="my-0">
+        <div class="card-body">
+          <h5 class="h6 card-title">Mi juego</h5>
+          <p>{{user.gameDescription}}</p>
+        </div>
+      </div>
     </div>
-    <div class="col-6 information">
-        <h1>{{user.name}}</h1>
-        <h4><span>Location:</span> {{user.location}}</h4>
-        <h4><span>Juego:</span> {{user.gameDescription}}</h4>
-    </div>
+  </div>
+
 </div>

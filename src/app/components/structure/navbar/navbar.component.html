@@ -1,12 +1,41 @@
-<div class="navbar navbar-default">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav navbar-nav">
-          <li class="active"><a routerLink="/">Home</a></li>
-          <li><a routerLink="/login">Login</a></li>
-          <li><a routerLink="/signin">Sign-in</a></li>
-          <li><a routerLink="/about-me">About me</a></li>
-        </ul>
-      </div>
-    </div>
+<nav id="sidebar" class="sidebar">
+  <div class="sidebar-content js-simplebar">
+    <a class="sidebar-brand" routerLink="/">
+        <span class="align-middle">
+          <i class="bi bi-joystick"></i> Sala de juegos</span>
+    </a>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-header">
+        Pages
+      </li>
+
+      <li class="sidebar-item active">
+        <a class="sidebar-link" routerLink="/">
+          <i class="bi bi-house"></i> <span class="align-middle">Inicio</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/about-me">
+          <i class="bi bi-person-bounding-box"></i> <span class="align-middle">Quién soy</span>
+        </a>
+      </li>
+
+      <li class="sidebar-header">
+        Users
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/login">
+          <i class="bi bi-door-open"></i> <span class="align-middle">Login</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/signin">
+          <i class="bi bi-box-arrow-in-right"></i> <span class="align-middle">Signin</span>
+        </a>
+      </li>
+    </ul>
   </div>
+</nav>
+

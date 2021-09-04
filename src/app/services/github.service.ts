@@ -9,7 +9,7 @@ import { IGithubUser } from '../interfaces/igithub-user';
 })
 export class GithubService {
 
-  baseUrl: string = 'https://api.github.com'
+  baseUrl: string = 'https://api.github.com';
 
   constructor(private http: HttpClient) { }
 

@@ -11,6 +11,7 @@ import { SigninComponent } from './components/pages/signin/signin.component';
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 import { GithubService } from './services/github.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/structure/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AboutmeComponent,
     NavbarComponent,
     SigninComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

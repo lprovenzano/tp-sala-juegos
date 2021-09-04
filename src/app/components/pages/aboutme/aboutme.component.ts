@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { GithubUser } from 'src/app/classes/github-user';
-import { GithubService } from 'src/app/services/github.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {GithubUser} from 'src/app/classes/github-user';
+import {GithubService} from 'src/app/services/github.service';
 
 @Component({
   selector: 'app-aboutme',
@@ -10,22 +10,26 @@ import { GithubService } from 'src/app/services/github.service';
 
 export class AboutmeComponent implements OnInit {
 
-  user!: GithubUser
+  user!: GithubUser;
 
-  constructor(private githubService: GithubService) { 
-    
+  constructor(private githubService: GithubService) {
+
   }
 
   ngOnInit(): void {
-    this.githubService.getUser('lprovenzano')
-    .subscribe((resp) => {
-      this.user = new GithubUser(
-          resp['avatar_url'], 
-          resp['name'], 
-          resp['location'], 
-          "Descripción del juego a desarrollar..."
-        )
-    });
+    const gameDescription = 'Descripción del juego a desarrollar...';
+    const userId = 'lprovenzano';
+    this.githubService.getUser(userId)
+      .subscribe((resp) => {
+        this.user = new GithubUser(
+          resp.avatar_url,
+          resp.name,
+          resp.location,
+          resp.bio,
+          resp.html_url,
+          gameDescription
+        );
+      });
   }
 
 }
