@@ -1,8 +1,8 @@
 <div class="wrapper">
-  <app-navbar></app-navbar>
+  <app-navbar [isVisible]="visibilityState"></app-navbar>
 
   <div class="main">
-   <app-header></app-header>
+   <app-header (visibility)="ShowNavbar($event)"></app-header>
 
     <main class="content">
       <div class="container-fluid p-0">
