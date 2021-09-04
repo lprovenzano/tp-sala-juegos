@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+$first_color: #00A19D;
+$second_color: #FFF8E5;
+$links: #FFB344;
+$details: #E05D5D;
+
 h1,
 h2,
 h3,
@@ -7,6 +12,19 @@ h5 {
   font-family: "Neucha", cursive;
 }
 
-p {
+p, a{
   font-family: "Rubik", sans-serif;
 }
+
+body{
+  background-color: $second_color;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+

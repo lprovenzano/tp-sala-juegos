@@ -1,12 +1,28 @@
-<div class="navbar navbar-default">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav navbar-nav">
-          <li class="active"><a routerLink="/">Home</a></li>
-          <li><a routerLink="/login">Login</a></li>
-          <li><a routerLink="/signin">Sign-in</a></li>
-          <li><a routerLink="/about-me">About me</a></li>
-        </ul>
+<div class="l-navbar" id="nav-bar">
+  <nav class="nav">
+    <div>
+      <a routerLink="/" class="nav_logo">
+        <i class="bi bi-house"></i>
+        <span>Home</span>
+      </a>
+      <div class="nav_list">
+        <a routerLink="/login" class="nav_link active">
+          <i class="bi bi-door-open"></i>
+          <span>Login</span>
+        </a>
+        <a routerLink="/signin" class="nav_link">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Registro</span>
+        </a>
+        <a routerLink="/about-me" class="nav_link">
+          <i class="bi bi-person-bounding-box"></i>
+          <span>Quién soy</span>
+        </a>
       </div>
     </div>
-  </div>
+    <a href="#" class="nav_link">
+      <i class="bi bi-power"></i>
+      <span>SignOut</span>
+    </a>
+  </nav>
+</div>

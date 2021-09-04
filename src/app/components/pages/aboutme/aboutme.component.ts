@@ -12,17 +12,17 @@ export class AboutmeComponent implements OnInit {
 
   user!: GithubUser
 
-  constructor(private githubService: GithubService) { 
-    
+  constructor(private githubService: GithubService) {
+
   }
 
   ngOnInit(): void {
     this.githubService.getUser('lprovenzano')
     .subscribe((resp) => {
       this.user = new GithubUser(
-          resp['avatar_url'], 
-          resp['name'], 
-          resp['location'], 
+          resp['avatar_url'],
+          resp['name'],
+          resp['location'],
           "Descripción del juego a desarrollar..."
         )
     });

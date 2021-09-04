@@ -1,10 +1,9 @@
-<div class="row about">
-    <div class="col-6">
-        <img class="img-responsive" src={{user.avatarUrl}} width="300" height="300"/>
-    </div>
-    <div class="col-6 information">
-        <h1>{{user.name}}</h1>
-        <h4><span>Location:</span> {{user.location}}</h4>
-        <h4><span>Juego:</span> {{user.gameDescription}}</h4>
-    </div>
-</div>
+<img
+  class="img-fluid img-thumbnail rounded float-start"
+  src="{{ user.avatarUrl }}"
+  width="300"
+  height="300"
+/>
+<h1>{{ user.name }}</h1>
+<h4><span>Location:</span> {{ user.location }}</h4>
+<h4><span>Juego:</span> {{ user.gameDescription }}</h4>
