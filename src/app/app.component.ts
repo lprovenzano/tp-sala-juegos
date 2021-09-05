@@ -11,4 +11,9 @@ export class AppComponent {
   ShowNavbar(visibility: boolean): void {
     this.visibilityState = visibility;
   }
+
+  onResize(size: any): void {
+    const widthThresholdToDisable = 991.98;
+    this.visibilityState = size.target.innerWidth > widthThresholdToDisable;
+  }
 }

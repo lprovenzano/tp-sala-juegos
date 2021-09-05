@@ -12178,9 +12178,10 @@ body {
 }
 
 @media (min-width: 1px) and (max-width: 991.98px) {
-  .sidebar {
-    margin-left: -260px
-  }
+  // ESTO LA OCULTA EN SIZE < 991.98
+  //.sidebar {
+  //  margin-left: -260px
+  //}
   .sidebar.collapsed {
     margin-left: 0
   }

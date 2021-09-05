@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   ShowNavbar(visibility: boolean): void {

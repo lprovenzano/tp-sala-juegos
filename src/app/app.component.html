@@ -2,7 +2,7 @@
   <app-navbar [isVisible]="visibilityState"></app-navbar>
 
   <div class="main">
-   <app-header (visibility)="ShowNavbar($event)"></app-header>
+   <app-header (visibility)="ShowNavbar($event)" (window:resize)="onResize($event)"></app-header>
 
     <main class="content">
       <div class="container-fluid p-0">
