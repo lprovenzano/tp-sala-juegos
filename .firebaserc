@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sala-juegos-7e80f": {
+      "hosting": {
+        "tp-sala-juegos": [
+          "sala-juegos-7e80f"
+        ]
+      }
+    }
+  }
+}
