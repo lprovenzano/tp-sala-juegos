@@ -14,10 +14,13 @@ import {AboutmeComponent} from './components/pages/aboutme/aboutme.component';
 import {NavbarComponent} from './components/structure/navbar/navbar.component';
 import {SignupComponent} from './components/pages/signup/signup.component';
 import {NotfoundComponent} from './components/pages/notfound/notfound.component';
-import {GithubService} from './services/github.service';
 import {HeaderComponent} from './components/structure/header/header.component';
 import {environment} from '../environments/environment';
+
+import {GithubService} from './services/github.service';
 import {AuthService} from './services/auth.service';
+import {NotificationService} from './services/notification.service';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,15 @@ import {AuthService} from './services/auth.service';
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      closeButton: true
+    }),
   ],
-  providers: [GithubService, AuthService],
+  providers: [GithubService, AuthService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

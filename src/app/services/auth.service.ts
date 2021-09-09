@@ -9,7 +9,7 @@ export class AuthService {
 
   user: User | null | undefined;
 
-  constructor(public angularFireAuth: AngularFireAuth, public  router: Router) {
+  constructor(private angularFireAuth: AngularFireAuth) {
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
@@ -18,24 +18,23 @@ export class AuthService {
     });
   }
 
-  async login(email: string, password: string): Promise<void> {
-    const result = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
-    console.log(result);
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
+  async login(email: string, password: string): Promise<any> {
+    return await this.angularFireAuth.signInWithEmailAndPassword(email, password);
   }
 
   async signUp(email: string, password: string): Promise<any> {
     return await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  async logout(): Promise<void> {
-    await this.angularFireAuth.signOut();
-    localStorage.removeItem('user');
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
+  async logout(): Promise<boolean> {
+    try {
+      await this.angularFireAuth.signOut();
+      localStorage.removeItem('user');
+      return true;
+    } catch (error) {
+      console.error('Something went wrong in logout()');
+    }
+    return false;
   }
 
   isLoggedIn(): boolean {

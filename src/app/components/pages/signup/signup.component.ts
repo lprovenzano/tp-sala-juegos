@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
+import {NotificationService} from '../../../services/notification.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -14,7 +16,7 @@ export class SignupComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private nofiticationService: NotificationService, private routerService: Router) {
   }
 
   ngOnInit(): void {
@@ -26,6 +28,12 @@ export class SignupComponent implements OnInit {
       .then(r => {
         if (r.additionalUserInfo.isNewUser) {
           this.authService.login(email, password);
+          this.routerService.navigate(['/']).then(() => {
+            window.location.reload();
+          });
+        } else {
+          this.nofiticationService.showError(r, 'Ups!');
+          console.error(r);
         }
       });
   }
