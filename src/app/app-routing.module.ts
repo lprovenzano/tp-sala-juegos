@@ -4,13 +4,13 @@ import { AboutmeComponent } from './components/pages/aboutme/aboutme.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
-import { SigninComponent } from './components/pages/signin/signin.component';
+import { SignupComponent } from './components/pages/signup/signup.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about-me', component: AboutmeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

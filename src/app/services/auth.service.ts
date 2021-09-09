@@ -1,47 +1,45 @@
 import {Injectable} from '@angular/core';
-import firebase from 'firebase/app';
+import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
+import firebase from 'firebase';
 import User = firebase.User;
-import {first} from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
 
-  public user: User | undefined;
+  user: User | null | undefined;
 
-  constructor(public angularFireAuth: AngularFireAuth) {
+  constructor(public angularFireAuth: AngularFireAuth, public  router: Router) {
+    this.angularFireAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+        localStorage.setItem('user', JSON.stringify(this.user));
+      }
+    });
   }
 
-  async login(email: string, password: string): Promise<any> {
-    try {
-      return await this.angularFireAuth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.error(error);
-    }
+  async login(email: string, password: string): Promise<void> {
+    const result = await this.angularFireAuth.signInWithEmailAndPassword(email, password);
+    console.log(result);
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
-  async signin(email: string, password: string): Promise<void> {
-    try {
-      await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.error(error);
-    }
+  async signUp(email: string, password: string): Promise<any> {
+    return await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
   }
 
   async logout(): Promise<void> {
-    try {
-      await this.angularFireAuth.signOut();
-    } catch (error) {
-      console.error(error);
-    }
+    await this.angularFireAuth.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
-  // @ts-ignore
-  getCurrentUser(): Promise<firebase.User | undefined | null> {
-    try {
-      return this.angularFireAuth.authState.pipe(first()).toPromise();
-    } catch (error) {
-      console.error(error);
-    }
+  isLoggedIn(): boolean {
+    const user = JSON.parse(<string> localStorage.getItem('user'));
+    return user !== null;
   }
 }

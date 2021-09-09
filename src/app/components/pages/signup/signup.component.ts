@@ -4,10 +4,10 @@ import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class SigninComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   registerForm = new FormGroup({
     email: new FormControl(''),
@@ -22,7 +22,12 @@ export class SigninComponent implements OnInit {
 
   onRegister(): void {
     const {email, password} = this.registerForm.value;
-    this.authService.signin(email, password);
+    this.authService.signUp(email, password)
+      .then(r => {
+        if (r.additionalUserInfo.isNewUser) {
+          this.authService.login(email, password);
+        }
+      });
   }
 
 }

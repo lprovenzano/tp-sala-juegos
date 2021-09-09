@@ -12,7 +12,7 @@ import {LoginComponent} from './components/pages/login/login.component';
 import {HomeComponent} from './components/pages/home/home.component';
 import {AboutmeComponent} from './components/pages/aboutme/aboutme.component';
 import {NavbarComponent} from './components/structure/navbar/navbar.component';
-import {SigninComponent} from './components/pages/signin/signin.component';
+import {SignupComponent} from './components/pages/signup/signup.component';
 import {NotfoundComponent} from './components/pages/notfound/notfound.component';
 import {GithubService} from './services/github.service';
 import {HeaderComponent} from './components/structure/header/header.component';
@@ -26,7 +26,7 @@ import {AuthService} from './services/auth.service';
     HomeComponent,
     AboutmeComponent,
     NavbarComponent,
-    SigninComponent,
+    SignupComponent,
     NotfoundComponent,
     HeaderComponent
   ],

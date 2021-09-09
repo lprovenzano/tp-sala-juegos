@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
+import firebase from 'firebase';
+import User = firebase.User;
 
 @Component({
   selector: 'app-header',
@@ -10,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   isVisible = true;
   isUserLogged = false;
+  user: any | null | undefined;
 
   @Output() visibility = new EventEmitter<boolean>();
 
@@ -17,12 +20,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const user = this.authService.getCurrentUser();
-    if (user) {
-      this.isUserLogged = true;
-      console.log(user);
+    this.isUserLogged = this.authService.isLoggedIn();
+    if (this.isUserLogged) {
+      this.user = JSON.parse(<string> localStorage.getItem('user'));
     }
-
   }
 
   ShowNavbar(visibility: boolean): void {
@@ -31,8 +32,8 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     if (this.isUserLogged) {
-      this.authService.logout();
-      console.log("logout");
+      this.authService.logout()
+        .then(r => console.log('logout ok', r));
     }
   }
 
