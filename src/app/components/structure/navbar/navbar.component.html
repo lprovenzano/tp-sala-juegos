@@ -22,19 +22,21 @@
         </a>
       </li>
 
-      <li class="sidebar-header">
-        Users
-      </li>
-      <li class="sidebar-item">
-        <a class="sidebar-link" routerLink="/login">
-          <i class="bi bi-door-open"></i> <span class="align-middle">Login</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a class="sidebar-link" routerLink="/signin">
-          <i class="bi bi-box-arrow-in-right"></i> <span class="align-middle">Signin</span>
-        </a>
-      </li>
+      <div *ngIf="!isUserLogged">
+        <li class="sidebar-header">
+          Users
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" routerLink="/login">
+            <i class="bi bi-door-open"></i> <span class="align-middle">Login</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" routerLink="/signin">
+            <i class="bi bi-box-arrow-in-right"></i> <span class="align-middle">Signin</span>
+          </a>
+        </li>
+      </div>
     </ul>
   </div>
 </nav>
