@@ -23,7 +23,11 @@ export class AuthService {
   }
 
   async signUp(email: string, password: string): Promise<any> {
-    return await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
+    try {
+      return await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async logout(): Promise<boolean> {

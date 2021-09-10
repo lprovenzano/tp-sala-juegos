@@ -50,5 +50,6 @@ import {ToastrModule} from 'ngx-toastr';
   providers: [GithubService, AuthService, NotificationService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

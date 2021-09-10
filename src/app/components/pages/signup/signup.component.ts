@@ -16,6 +16,12 @@ export class SignupComponent implements OnInit {
     password: new FormControl('')
   });
 
+  errorMessage: string | null | undefined;
+
+  emailAlreadyInUse = 'auth/email-already-in-use';
+  invalidEmail = 'auth/invalid-email';
+  invalidPassword = 'auth/weak-password';
+
   constructor(private authService: AuthService, private nofiticationService: NotificationService, private routerService: Router) {
   }
 
@@ -31,11 +37,17 @@ export class SignupComponent implements OnInit {
           this.routerService.navigate(['/']).then(() => {
             window.location.reload();
           });
-        } else {
-          this.nofiticationService.showError(r, 'Ups!');
-          console.error(r);
         }
-      });
+      }).catch(e => {
+      if (e.code === this.emailAlreadyInUse) {
+        this.errorMessage = 'El email se encuentra registrado.';
+      }
+      if (e.code === this.invalidEmail) {
+        this.errorMessage = 'Email inválido.';
+      }
+      if (e.code === this.invalidPassword) {
+        this.errorMessage = 'La contraseña debe tener más de 6 caracteres.';
+      }
+    });
   }
-
 }
