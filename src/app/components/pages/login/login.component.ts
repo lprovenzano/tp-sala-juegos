@@ -27,6 +27,18 @@ export class LoginComponent implements OnInit {
       .then((r: any) => this.handleLogin(r, email));
   }
 
+  public autoLogin(userTestId: string): void {
+    const email = `test_utn${userTestId}@test.com`;
+    const password = `test_utn${userTestId}`;
+    this.notificationService.showSuccess('Iniciando sesión...', `${email}`);
+    this.authService.login(email, password)
+      .then((r: any) => {
+        setTimeout(() => {
+          this.handleLogin(r, email);
+        }, 1000);
+      });
+  }
+
   private handleLogin(response: any, email: string): void {
     if (!response.isNewUser && response.user.email === email) {
       setTimeout(() => {

@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     if (this.isUserLogged && this.authService.logout()) {
-      this.notificationService.showInfo('Gracias, vuelva prontos.', '');
+      this.notificationService.showSuccess('Sesión cerrada con éxito.', 'Ok');
       setTimeout(() => {
         this.routerService.navigate(['/']).then(() => {
           window.location.reload();

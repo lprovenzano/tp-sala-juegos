@@ -24,6 +24,10 @@ import {ToastrModule} from 'ngx-toastr';
 import {ChatComponent} from './components/pages/chat/chat.component';
 import {ChatService} from './services/chat.service';
 
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,12 +48,15 @@ import {ChatService} from './services/chat.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 5000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       closeButton: true
     }),
     FormsModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
+    LoadingBarModule
   ],
   providers: [GithubService, AuthService, NotificationService, ChatService],
   bootstrap: [AppComponent]

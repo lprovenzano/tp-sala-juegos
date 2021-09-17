@@ -27,7 +27,6 @@ export class ChatService {
         for (const message of messages) {
           this.chats.unshift(message);
         }
-
         return this.chats;
       }));
   }
