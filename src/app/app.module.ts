@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
@@ -21,6 +21,8 @@ import {GithubService} from './services/github.service';
 import {AuthService} from './services/auth.service';
 import {NotificationService} from './services/notification.service';
 import {ToastrModule} from 'ngx-toastr';
+import {ChatComponent} from './components/pages/chat/chat.component';
+import {ChatService} from './services/chat.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {ToastrModule} from 'ngx-toastr';
     NavbarComponent,
     SignupComponent,
     NotfoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +49,9 @@ import {ToastrModule} from 'ngx-toastr';
       preventDuplicates: true,
       closeButton: true
     }),
+    FormsModule,
   ],
-  providers: [GithubService, AuthService, NotificationService],
+  providers: [GithubService, AuthService, NotificationService, ChatService],
   bootstrap: [AppComponent]
 })
 
