@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Renderer2} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Inavbar} from '../../../interfaces/inavbar';
 
@@ -15,7 +15,9 @@ export class NavbarComponent implements OnInit {
   @Input()
   elements: Inavbar[] | undefined;
 
-  constructor(public authService: AuthService) {
+  status = false;
+
+  constructor(public authService: AuthService, private renderer: Renderer2) {
   }
 
   ngOnInit(): void {
@@ -26,5 +28,4 @@ export class NavbarComponent implements OnInit {
     // @ts-ignore
     return this.elements.filter(e => e.showLoggedUser === showLoggedUser);
   }
-
 }
