@@ -27,13 +27,13 @@ export class NavbarComponent implements OnInit {
       icon: 'bi bi-door-open',
       name: 'Iniciar sesión',
       showLoggedUser: false,
-      path: '/login'
+      path: '/auth/login'
     },
     {
       icon: 'bi bi-box-arrow-in-right',
       name: 'Registrarse',
       showLoggedUser: false,
-      path: 'signup'
+      path: '/auth/signup'
     }
   ];
 

@@ -10,9 +10,13 @@ import {ChatComponent} from './components/pages/chat/chat.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'about-me', component: AboutmeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'chat-room', component: ChatComponent},
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  }, {
+    path: 'chat',
+    loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)
+  },
   {path: '**', component: NotfoundComponent}
 ];
 
