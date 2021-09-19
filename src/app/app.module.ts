@@ -6,7 +6,6 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {HomeComponent} from './components/pages/home/home.component';
 import {NavbarComponent} from './components/structure/navbar/navbar.component';
 import {NotfoundComponent} from './components/pages/notfound/notfound.component';
 import {HeaderComponent} from './components/structure/header/header.component';

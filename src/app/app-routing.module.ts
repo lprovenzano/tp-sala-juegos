@@ -6,6 +6,7 @@ import {LoginComponent} from './components/pages/login/login.component';
 import {NotfoundComponent} from './components/pages/notfound/notfound.component';
 import {SignupComponent} from './components/pages/signup/signup.component';
 import {ChatComponent} from './components/pages/chat/chat.component';
+import {AccessGuard} from './guards/access.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   }, {
     path: 'chat',
+    canActivate: [AccessGuard],
     loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)
   },
   {

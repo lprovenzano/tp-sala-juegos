@@ -16,7 +16,7 @@
               <input type="password" class="form-control" placeholder="Password" formControlName="password">
             </div>
             <div class="mb-3">
-              <span>No tenés cuenta? <a routerLink="/signup">Creá una acá</a> </span>
+              <span>No tenés cuenta? <a routerLink="auth/signup">Creá una acá</a> </span>
             </div>
             <div class="mt-3">
               <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">INGRESAR
@@ -33,12 +33,10 @@
         </div>
         <div class="card-body text-center quickLogin">
           <div class="mb-3">
-            <button class="btn btn-info" (click)="autoLogin('1')"><i class="bi bi-person-circle"></i> User Test 1
-            </button>
-            <button class="btn btn-info " (click)="autoLogin('2')"><i class="bi bi-person-circle"></i> User Test 2
-            </button>
-            <button class="btn btn-info" (click)="autoLogin('3')"><i class="bi bi-person-circle"></i> User Test 3
-            </button>
+            <span *ngFor="let user of testUsers; let i = index">
+            <button class="btn btn-info" (click)="autoLogin(i+1)"><i
+              class="bi bi-person-circle"></i> {{user.name}}</button>
+              </span>
           </div>
         </div>
       </div>

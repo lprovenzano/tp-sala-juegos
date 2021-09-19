@@ -15,6 +15,18 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
+  testUsers = [
+    {
+      name: 'User Test 1'
+    },
+    {
+      name: 'User Test 2'
+    },
+    {
+      name: 'User Test 3'
+    }
+  ];
+
   constructor(private authService: AuthService, private notificationService: NotificationService, private routerService: Router) {
   }
 
@@ -27,9 +39,9 @@ export class LoginComponent implements OnInit {
       .then((r: any) => this.handleLogin(r, email));
   }
 
-  public autoLogin(userTestId: string): void {
-    const email = `test_utn${userTestId}@test.com`;
-    const password = `test_utn${userTestId}`;
+  public autoLogin(userTestId: number): void {
+    const email = `test_utn${userTestId.toString()}@test.com`;
+    const password = `test_utn${userTestId.toString()}`;
     this.notificationService.showSuccess('Iniciando sesión...', `${email}`);
     this.authService.login(email, password)
       .then((r: any) => {
