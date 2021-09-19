@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {Igamecard} from '../../../interfaces/igamecard';
 
 @Component({
   selector: 'app-gamecard',
@@ -12,7 +13,7 @@ export class GamecardComponent implements OnInit {
   buttonTitle = 'Jugar ahora!';
 
   @Input()
-  gameList: any[] | undefined;
+  gameList: Igamecard[] | undefined;
 
   constructor(public authService: AuthService, private router: Router) {
   }

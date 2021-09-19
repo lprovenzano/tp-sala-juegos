@@ -4,5 +4,4 @@ export interface IGithubUser {
   location: string;
   bio: string;
   html_url: string;
-
 }
