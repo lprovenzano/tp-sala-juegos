@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4" *ngFor="let game of gameList; let i = index">
+    <div class="card">
+      <img class="card-img-top" [src]="game.image_url" alt="Unsplash">
+      <div class="card-header">
+        <h5 class="card-title mb-0">{{game.title}}{{i + 1}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{game.description}}</p>
+        <button class="play-button btn btn-danger" (click)="playGame(game.path)">{{buttonTitle}}</button>
+      </div>
+    </div>
+  </div>
+</div>

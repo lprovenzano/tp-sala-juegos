@@ -18,11 +18,11 @@ export class ChatService {
   }
 
   getMessages(): Observable<Imessage[]> {
-    this.itemsCollection = this.angularFirestore.collection<Imessage>('chats', ref => ref.orderBy('date', 'desc')
-      .limit(20));
+    this.itemsCollection = this.angularFirestore.collection<Imessage>('chats', ref => ref
+      .orderBy('date', 'desc')
+      .limit(10));
     return this.itemsCollection.valueChanges().pipe(
       map((messages: Imessage[]) => {
-        console.log(messages);
         this.chats = [];
         for (const message of messages) {
           this.chats.unshift(message);

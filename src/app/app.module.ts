@@ -27,6 +27,8 @@ import {ChatService} from './services/chat.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { FooterComponent } from './components/structure/footer/footer.component';
+import { GamecardComponent } from './components/games/gamecard/gamecard.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     SignupComponent,
     NotfoundComponent,
     HeaderComponent,
-    ChatComponent
+    ChatComponent,
+    FooterComponent,
+    GamecardComponent
   ],
   imports: [
     BrowserModule,

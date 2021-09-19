@@ -8,13 +8,37 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  isUserLogged = false;
+  myGames = [
+    {
+      image_url: 'https://cdn.andro4all.com/files/2020/11/juegos-telegram.jpg',
+      title: 'title game',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+      path: '/'
+    },
+    {
+      image_url: 'https://cdn.andro4all.com/files/2020/11/juegos-telegram.jpg',
+      title: 'title game',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+      path: '/'
+    },
+    {
+      image_url: 'https://cdn.andro4all.com/files/2020/11/juegos-telegram.jpg',
+      title: 'title game',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+      path: '/'
+    },
+    {
+      image_url: 'https://cdn.andro4all.com/files/2020/11/juegos-telegram.jpg',
+      title: 'title game',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+      path: '/'
+    }
+  ];
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isUserLogged = this.authService.isLoggedIn();
   }
 
 }

@@ -9,13 +9,43 @@ import {AuthService} from '../../../services/auth.service';
 export class NavbarComponent implements OnInit {
 
   @Input() isVisible: any;
-  isUserLogged = false;
 
-  constructor(private authService: AuthService) {
+  elements = [
+    {
+      icon: 'bi bi-house',
+      name: 'Inicio',
+      showLoggedUser: true,
+      path: '/'
+    },
+    {
+      icon: 'bi bi-person-bounding-box',
+      name: 'Quién soy',
+      showLoggedUser: true,
+      path: '/about-me'
+    },
+    {
+      icon: 'bi bi-door-open',
+      name: 'Iniciar sesión',
+      showLoggedUser: false,
+      path: '/login'
+    },
+    {
+      icon: 'bi bi-box-arrow-in-right',
+      name: 'Registrarse',
+      showLoggedUser: false,
+      path: 'signup'
+    }
+  ];
+
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isUserLogged = this.authService.isLoggedIn();
+
+  }
+
+  getElements(showLoggedUser: boolean): any[] {
+    return this.elements.filter(e => e.showLoggedUser === showLoggedUser);
   }
 
 }

@@ -3,7 +3,7 @@
     <i class="hamburger align-self-center"></i>
   </a>
 
-  <div class="navbar-collapse collapse" *ngIf="isUserLogged">
+  <div class="navbar-collapse collapse" *ngIf="authService.isLoggedIn() && user.email !== null">
     <ul class="navbar-nav navbar-align">
       <li class="nav-item dropdown">
         <a class="nav-icon" href="#" id="notification">

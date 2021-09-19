@@ -1,0 +1,29 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+
+@Component({
+  selector: 'app-gamecard',
+  templateUrl: './gamecard.component.html',
+  styleUrls: ['./gamecard.component.scss']
+})
+export class GamecardComponent implements OnInit {
+
+  buttonTitle = 'Jugar ahora!';
+
+  @Input()
+  gameList: any[] | undefined;
+
+  constructor(public authService: AuthService, private router: Router) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  playGame(routeGame: string): void {
+    const route = this.authService.isLoggedIn() ? routeGame : '/signup';
+    console.log(route);
+    this.router.navigate([route]);
+  }
+
+}

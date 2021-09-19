@@ -4,23 +4,12 @@
 
   <div class="main">
     <app-header (visibility)="ShowNavbar($event)" (window:resize)="onResize($event)"></app-header>
-
     <main class="content">
       <div class="container-fluid p-0">
         <router-outlet></router-outlet>
       </div>
     </main>
 
-    <footer class="footer">
-      <div class="container-fluid">
-        <div class="row text-muted">
-          <div class="col-6 text-left">
-            <p class="mb-0">
-              <strong>Laboratorio IV - UTN. </strong>
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <app-footer [text]='footerText'></app-footer>
   </div>
 </div>

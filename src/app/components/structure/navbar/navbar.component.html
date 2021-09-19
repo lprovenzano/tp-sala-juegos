@@ -10,30 +10,21 @@
         Pages
       </li>
 
-      <li class="sidebar-item active">
-        <a class="sidebar-link" routerLink="/">
-          <i class="bi bi-house"></i> <span class="align-middle">Inicio</span>
-        </a>
-      </li>
+      <div>
+        <li class="sidebar-item" *ngFor="let item of getElements(true)">
+          <a class="sidebar-link" routerLink="{{item.path}}">
+            <i class="{{item.icon}}"></i> <span class="align-middle">{{item.name}}</span>
+          </a>
+        </li>
+      </div>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" routerLink="/about-me">
-          <i class="bi bi-person-bounding-box"></i> <span class="align-middle">Quién soy</span>
-        </a>
-      </li>
-
-      <div *ngIf="!isUserLogged">
+      <div *ngIf="!authService.isLoggedIn()">
         <li class="sidebar-header">
           Users
         </li>
-        <li class="sidebar-item">
-          <a class="sidebar-link" routerLink="/login">
-            <i class="bi bi-door-open"></i> <span class="align-middle">Iniciar sesión</span>
-          </a>
-        </li>
-        <li class="sidebar-item">
-          <a class="sidebar-link" routerLink="/signup">
-            <i class="bi bi-box-arrow-in-right"></i> <span class="align-middle">Registrarse</span>
+        <li class="sidebar-item" *ngFor="let item of getElements(false)">
+          <a class="sidebar-link" routerLink="{{item.path}}">
+            <i class="{{item.icon}}"></i> <span class="align-middle">{{item.name}}</span>
           </a>
         </li>
       </div>

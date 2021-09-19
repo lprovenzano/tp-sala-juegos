@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    const user = JSON.parse(<string> localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user') as string);
     return user !== null;
   }
 }

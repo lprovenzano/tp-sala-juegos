@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   visibilityState = true;
+  footerText = 'Laboratorio IV - UTN.';
 
   ShowNavbar(visibility: boolean): void {
     this.visibilityState = visibility;
@@ -16,4 +17,5 @@ export class AppComponent {
     const widthThresholdToDisable = 991.98;
     this.visibilityState = size.target.innerWidth > widthThresholdToDisable;
   }
+
 }

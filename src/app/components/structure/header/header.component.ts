@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import firebase from 'firebase';
-import User = firebase.User;
 import {NotificationService} from '../../../services/notification.service';
 import {Router} from '@angular/router';
 
@@ -13,18 +12,16 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   isVisible = true;
-  isUserLogged = false;
   user: any | null | undefined;
 
   @Output() visibility = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthService, private notificationService: NotificationService, private routerService: Router) {
+  constructor(public authService: AuthService, private notificationService: NotificationService, private routerService: Router) {
   }
 
   ngOnInit(): void {
-    this.isUserLogged = this.authService.isLoggedIn();
-    if (this.isUserLogged) {
-      this.user = JSON.parse(<string> localStorage.getItem('user'));
+    if (this.authService.isLoggedIn()) {
+      this.user = JSON.parse(localStorage.getItem('user') as string);
     }
   }
 
@@ -33,7 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    if (this.isUserLogged && this.authService.logout()) {
+    if (this.authService.isLoggedIn() && this.authService.logout()) {
       this.notificationService.showSuccess('Sesión cerrada con éxito.', 'Ok');
       setTimeout(() => {
         this.routerService.navigate(['/']).then(() => {
