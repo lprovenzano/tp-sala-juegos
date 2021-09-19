@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
+import {Inavbar} from '../../../interfaces/inavbar';
 
 @Component({
   selector: 'app-navbar',
@@ -8,34 +9,11 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() isVisible: any;
+  @Input()
+  isVisible: any;
 
-  elements = [
-    {
-      icon: 'bi bi-house',
-      name: 'Inicio',
-      showLoggedUser: true,
-      path: '/'
-    },
-    {
-      icon: 'bi bi-person-bounding-box',
-      name: 'Quién soy',
-      showLoggedUser: true,
-      path: '/about-me'
-    },
-    {
-      icon: 'bi bi-door-open',
-      name: 'Iniciar sesión',
-      showLoggedUser: false,
-      path: '/auth/login'
-    },
-    {
-      icon: 'bi bi-box-arrow-in-right',
-      name: 'Registrarse',
-      showLoggedUser: false,
-      path: '/auth/signup'
-    }
-  ];
+  @Input()
+  elements: Inavbar[] | undefined;
 
   constructor(public authService: AuthService) {
   }
@@ -44,7 +22,8 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  getElements(showLoggedUser: boolean): any[] {
+  getElements(showLoggedUser: boolean): Inavbar[] {
+    // @ts-ignore
     return this.elements.filter(e => e.showLoggedUser === showLoggedUser);
   }
 

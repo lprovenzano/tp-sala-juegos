@@ -1,6 +1,6 @@
 <ngx-loading-bar color="#E74C3C" height="10px" [includeSpinner]="false"></ngx-loading-bar>
 <div class="wrapper">
-  <app-navbar [isVisible]="visibilityState"></app-navbar>
+  <app-navbar [isVisible]="visibilityState" [elements]="navbarElements"></app-navbar>
 
   <div class="main">
     <app-header (visibility)="ShowNavbar($event)" (window:resize)="onResize($event)"></app-header>
@@ -9,7 +9,6 @@
         <router-outlet></router-outlet>
       </div>
     </main>
-
     <app-footer [text]='footerText'></app-footer>
   </div>
 </div>

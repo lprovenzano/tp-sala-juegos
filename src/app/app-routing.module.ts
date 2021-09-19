@@ -8,8 +8,14 @@ import {SignupComponent} from './components/pages/signup/signup.component';
 import {ChatComponent} from './components/pages/chat/chat.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'about-me', component: AboutmeComponent},
+  {
+    path: '',
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'about-me',
+    loadChildren: () => import('./modules/aboutme/aboutme.module').then(m => m.AboutmeModule)
+  },
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
@@ -17,7 +23,10 @@ const routes: Routes = [
     path: 'chat',
     loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)
   },
-  {path: '**', component: NotfoundComponent}
+  {
+    path: '**',
+    component: NotfoundComponent
+  }
 ];
 
 @NgModule({
