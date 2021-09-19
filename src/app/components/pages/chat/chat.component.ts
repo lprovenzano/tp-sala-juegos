@@ -11,6 +11,10 @@ export class ChatComponent implements OnInit {
 
   message = '';
   element: any;
+  colorMe = '';
+  colorOther = '';
+
+  private colors = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning text-dark', 'bg-info text-dark', 'bg-dark'];
 
   constructor(public chatService: ChatService, public authService: AuthService) {
     this.chatService.getMessages()
@@ -18,17 +22,18 @@ export class ChatComponent implements OnInit {
         setTimeout(() => {
           this.element.scrollTop = this.element.scrollHeight;
         }, 20);
-
       });
   }
 
   ngOnInit(): void {
-    this.element = document.getElementById('app-mensajes');
+    this.element = document.getElementById('messages');
+    this.colorMe = this.getRandomColor();
+    const color = this.getRandomColor();
+    this.colorOther = this.colorMe === color ? this.getRandomColor() : color;
   }
 
   sendMessage(): void {
-    console.log(this.message);
-    if (this.message.length === 0) {
+    if (this.message.trim().length === 0) {
       return;
     }
     this.chatService.sendMessage(this.message)
@@ -40,5 +45,9 @@ export class ChatComponent implements OnInit {
 
   cleanInput(): void {
     this.message = '';
+  }
+
+  getRandomColor(): string {
+    return this.colors[Math.floor(Math.random() * this.colors.length)];
   }
 }

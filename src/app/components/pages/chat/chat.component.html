@@ -1,23 +1,30 @@
-<h1>Chat</h1>
+<h1>Sala de chat</h1>
 <hr>
 
-<div class="app-mensajes" id="app-mensajes">
-
-  <div *ngFor="let chat of chatService.chats"
-       [ngClass]="{ 'text-right' : authService.user.uid == chat.uid }">
-        <span class="badge rounded-pill" [ngClass]="
-        { 'bg-primary' : authService.user.uid == chat.uid,
-          'bg-success' : authService.user.uid != chat.uid }">
-          {{ chat.name }} | {{chat.dateFormatted}}</span>
-    <p>
-      {{ chat.message }}
-    </p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="panel panel-primary">
+        <div class="panel-body" id="messages">
+          <div *ngFor="let chat of chatService.chats"
+               [ngClass]="{ 'text-right' : authService.user.uid == chat.uid }">
+                  <span class="badge rounded-pill {{authService.user.uid == chat.uid? colorMe : colorOther}}">
+                    {{ chat.name }} | {{chat.dateFormatted}}</span>
+            <p>
+              {{ chat.message }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="col-12">
+          <input class="form-control messageBox" placeholder="Ingrese su mensaje y pulse [Enter]..." type="text"
+                 name="mensaje"
+                 [(ngModel)]="message"
+                 (keyup.enter)="sendMessage()">
+        </div>
+      </div>
+    </div>
   </div>
-
 </div>
 
-<input type="text" name="mensaje"
-       [(ngModel)]="message"
-       class="form-comtrol"
-       (keyup.enter)="sendMessage()"
-       placeholder="Enviar mensaje">

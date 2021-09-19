@@ -19,8 +19,7 @@ export class ChatService {
 
   getMessages(): Observable<Imessage[]> {
     this.itemsCollection = this.angularFirestore.collection<Imessage>('chats', ref => ref
-      .orderBy('date', 'desc')
-      .limit(10));
+      .orderBy('date', 'desc'));
     return this.itemsCollection.valueChanges().pipe(
       map((messages: Imessage[]) => {
         this.chats = [];
