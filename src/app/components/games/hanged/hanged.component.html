@@ -1,21 +1,19 @@
 <div class="main-container">
-
-  <h1 class="titulo">El ahorcado</h1>
-  <h1 id="msg-final"></h1>
+  <h1>El ahorcado</h1>
   <div class="flex-row no-wrap">
-    <h2 class="palabra" id="palabra"
+    <h2 class="word" id="word"
         *ngIf="this.hiddenWord.length>0">{{this.hiddenWord}}</h2>
     <picture>
       <img *ngFor="let image of imagesName" [src]=image alt="hanged_part" id="image6">
     </picture>
   </div>
-  <div class="flex-row" id="turnos">
+  <div class="flex-row" id="try">
     <div class="col">
-      <h3>Intentos restantes: <span id="intentos">{{attempts}}</span></h3>
+      <h3>Intentos restantes: <span>{{attempts}}</span></h3>
     </div>
     <div class="col">
-      <button onclick="inicio()" id="reset">Elegir otra palabra</button>
-      <button (click)="showBadgeClue()" id="pista" [disabled]="lockClue">Dame una pista!</button>
+      <!--      <button onclick="inicio()">Elegir otra palabra</button>-->
+      <button (click)="showBadgeClue()" [disabled]="lockClue">Dame una pista!</button>
       <span id="hueco-pista"></span>
     </div>
   </div>
@@ -70,5 +68,4 @@
       </div>
     </div>
   </div>
-
 </div>

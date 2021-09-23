@@ -6,11 +6,6 @@
   max-width: 800px;
   margin: auto;
 }
-h1.titulo {
-  margin: 50px auto 80px auto;
-  text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-}
 h1#msg-final {
   text-align: center;
   color: crimson;
@@ -22,19 +17,10 @@ h1#msg-final {
 .zoom-in {
   transform: scale(1) !important;
 }
-#acierto {
+#ok {
   text-align: center;
   min-height: 24px;
   transform: scale(0);
-}
-.acierto {
-  animation: zoomInOut 1s ease;
-}
-.rojo {
-  color: red;
-}
-.verde {
-  color: green;
 }
 @keyframes zoomInOut {
   0% { transform: scale(0); }
@@ -42,7 +28,7 @@ h1#msg-final {
   70% { transform: scale(1); }
   100% { transform: scale(0); }
 }
-h2.palabra {
+h2.word {
   margin: 0 auto 25px auto;
   text-align: center;
   color: royalblue;
@@ -65,7 +51,7 @@ h2.palabra {
 .col span {
 
 }
-#turnos h3 {
+#try h3 {
   margin: auto;
 }
 h3 span {
@@ -79,7 +65,7 @@ picture {
 }
 picture img {
   position: absolute;
-  top: -203px;
+  top: 100px;
   left: -205px;
   height: 225px;
 }
@@ -87,11 +73,4 @@ picture img {
 #image2, #image1, #image0 {
   opacity: 0;
   transition: opacity .3s ease;
-}
-.fade-in {
-  opacity: 1 !important;
-}
-.encuadre {
-  border: 2px dashed crimson;
-  padding: 3px 2px 2px 6px;
 }
