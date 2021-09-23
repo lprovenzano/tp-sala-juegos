@@ -19,6 +19,7 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {FooterComponent} from './components/structure/footer/footer.component';
+import { HangedComponent } from './components/games/hanged/hanged.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {FooterComponent} from './components/structure/footer/footer.component';
     NavbarComponent,
     NotfoundComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HangedComponent
   ],
   imports: [
     BrowserModule,

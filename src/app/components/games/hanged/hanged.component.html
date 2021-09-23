@@ -1,0 +1,74 @@
+<div class="main-container">
+
+  <h1 class="titulo">El ahorcado</h1>
+  <h1 id="msg-final"></h1>
+  <div class="flex-row no-wrap">
+    <h2 class="palabra" id="palabra"
+        *ngIf="this.hiddenWord.length>0">{{this.hiddenWord}}</h2>
+    <picture>
+      <img *ngFor="let image of imagesName" [src]=image alt="hanged_part" id="image6">
+    </picture>
+  </div>
+  <div class="flex-row" id="turnos">
+    <div class="col">
+      <h3>Intentos restantes: <span id="intentos">{{attempts}}</span></h3>
+    </div>
+    <div class="col">
+      <button onclick="inicio()" id="reset">Elegir otra palabra</button>
+      <button (click)="showBadgeClue()" id="pista" [disabled]="lockClue">Dame una pista!</button>
+      <span id="hueco-pista"></span>
+    </div>
+  </div>
+
+  <div class="flex-row">
+    <div class="col">
+      <div class="flex-row" id="screenKeyboard">
+        <button *ngFor="let letter of keyboard" (click)="try(letter.toUpperCase())"
+                [disabled]="shouldDisableLetter(letter)">{{letter}}</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="alert alert-primary alert-outline alert-dismissible" role="alert" *ngIf="this.badgeClue">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <div class="alert-message">
+          <h4 class="alert-heading">Atención!</h4>
+          <p>Tené en cuenta, que sólo podes solicitar una pista y al aceptar recibirla perderás un intento.</p>
+          <p>Aún así... ¿Querés la pista?</p>
+          <hr>
+          <div class="btn-list">
+            <button class="btn btn-success" type="button" (click)="giveClue()">Si, dámela igual!</button>
+            <button class="btn btn-danger" type="button" (click)="this.badgeClue = !this.badgeClue">No, gracias.
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="alert alert-primary alert-outline alert-dismissible" role="alert" *ngIf="this.win">
+        <div class="alert-message">
+          <h4 class="alert-heading">Felicitaciones!</h4>
+          <p>Tenemos un nuevo ganador!</p>
+          <hr>
+          <div class="btn-list">
+            <button class="btn btn-success" type="button">Quiero jugar de nuevo</button>
+            <button class="btn btn-danger" type="button">Salir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6" *ngIf="clueMessage.length>0">
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button (click)="this.clueMessage = ''" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="alert-message">
+        <strong>Pista desbloqueada!</strong> {{this.clueMessage}}
+      </div>
+    </div>
+  </div>
+
+</div>

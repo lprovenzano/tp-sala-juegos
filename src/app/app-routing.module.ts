@@ -26,6 +26,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)
   },
   {
+    path: 'games',
+    canActivate: [AccessGuard],
+    loadChildren: () => import('./modules/game/game.module').then(m => m.GameModule)
+  },
+  {
     path: '**',
     component: NotfoundComponent
   }
