@@ -10,6 +10,11 @@ const routes: Routes = [
         path: 'hanged',
         canActivate: [AccessGuard],
         loadChildren: () => import('./hanged/hanged.module').then(m => m.HangedModule)
+      },
+      {
+        path: 'higherorlower',
+        canActivate: [AccessGuard],
+        loadChildren: () => import('./higherorlower/higherorlower.module').then(m => m.HigherorlowerModule)
       }
     ],
   }
