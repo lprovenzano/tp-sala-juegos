@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpClientModule, HttpErrorResponse} from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
-import {GithubUser} from '../classes/github-user';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {IGithubUser} from '../interfaces/igithub-user';
 
 @Injectable({

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HigherorlowerService} from '../../../services/higherorlower.service';
 
 @Component({
   selector: 'app-higherorlower',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HigherorlowerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private higherOrLowerService: HigherorlowerService) {
+  }
 
   ngOnInit(): void {
   }
