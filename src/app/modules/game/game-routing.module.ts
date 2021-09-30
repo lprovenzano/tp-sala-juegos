@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HangedComponent} from '../../components/games/hanged/hanged.component';
+import {AccessGuard} from '../../guards/access.guard';
 
 const routes: Routes = [
   {
@@ -8,9 +8,10 @@ const routes: Routes = [
     children: [
       {
         path: 'hanged',
-        component: HangedComponent
+        canActivate: [AccessGuard],
+        loadChildren: () => import('./hanged/hanged.module').then(m => m.HangedModule)
       }
-    ]
+    ],
   }
 ];
 

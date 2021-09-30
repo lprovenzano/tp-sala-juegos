@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Ihangedword} from 'src/app/interfaces/ihangedword';
+import {HangedService} from '../../../services/hanged.service';
 
 @Component({
   selector: 'app-hanged',
@@ -12,46 +14,35 @@ export class HangedComponent implements OnInit {
   imagesName: string[] = [];
   keyboard = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   attempts = 7;
+  points = 0;
   unknownWord: any[] = [];
   hiddenWord = '';
   usedLetters: string[] = [];
   badgeClue = false;
   clueMessage = '';
   lockClue = false;
-  win = false;
-  availableWords = [
-    {
-      word: 'MANZANA',
-      clue: 'Es una fruta...'
-    },
-    {
-      word: 'PERA',
-      clue: 'Es una fruta...'
-    },
-    {
-      word: 'NARANJA',
-      clue: 'Es una fruta...'
-    }
-  ];
+  isWinner = false;
+  isLoser = false;
 
-  constructor() {
+  constructor(private hangedService: HangedService) {
   }
 
   ngOnInit(): void {
-    this.unknownWord.push(this.getRandomWord());
-    this.getUnknownHiddenWord();
+    this.selectWord();
   }
+
 
   generateImages(attempt: number): void {
     if (attempt < 0) {
       return;
     }
     const image = `${this.basePathImage}${attempt}${this.imageFormat}`;
+    this.imagesName = [];
     this.imagesName.push(image);
   }
 
   getRandomWord(): any {
-    return this.availableWords[Math.floor(Math.random() * this.availableWords.length)];
+    return this.hangedService.availableWords[Math.floor(Math.random() * this.hangedService.availableWords.length)];
   }
 
   getUnknownHiddenWord(): void {
@@ -74,8 +65,9 @@ export class HangedComponent implements OnInit {
       for (const position of result[0].positions) {
         this.swap(letter, position);
       }
+      this.points += 10;
     } else {
-      this.attempts--;
+      this.attempts <= 0 ? 0 : this.attempts--;
       this.generateImages(this.attempts);
     }
     this.evaluate();
@@ -124,12 +116,41 @@ export class HangedComponent implements OnInit {
     this.clueMessage = this.unknownWord[0].clue;
   }
 
+  resetGame(): void {
+    this.badgeClue = false;
+    this.clueMessage = '';
+    this.lockClue = false;
+    this.isWinner = false;
+    this.isLoser = false;
+    this.attempts = 7;
+    this.points = 0;
+    this.usedLetters = [];
+    this.unknownWord = [];
+    this.selectWord();
+  }
+
   private evaluate(): void {
     if ([...this.hiddenWord].indexOf('_') < 0 && this.attempts > 0) {
-      this.win = true;
+      this.isWinner = true;
+      this.blockKeyboard();
+      this.lockClue = true;
     }
     if (this.attempts === 0 && [...this.hiddenWord].indexOf('_') > -1) {
-      console.error('LOST!!!');
+      this.isLoser = true;
+      this.blockKeyboard();
+      this.lockClue = true;
     }
   }
+
+  private selectWord(): void {
+    this.unknownWord.push(this.getRandomWord());
+    this.getUnknownHiddenWord();
+  }
+
+  private blockKeyboard(): void {
+    for (const letter of this.keyboard) {
+      this.usedLetters.push(letter);
+    }
+  }
+
 }

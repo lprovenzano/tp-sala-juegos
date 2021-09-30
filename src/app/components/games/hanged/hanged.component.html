@@ -1,70 +1,70 @@
-<div class="main-container">
-  <h1>El ahorcado</h1>
-  <div class="flex-row no-wrap">
-    <h2 class="word" id="word"
-        *ngIf="this.hiddenWord.length>0">{{this.hiddenWord}}</h2>
-    <picture>
-      <img *ngFor="let image of imagesName" [src]=image alt="hanged_part" id="image6">
-    </picture>
-  </div>
-  <div class="flex-row" id="try">
+<div class="container">
+  <div class="row">
     <div class="col">
-      <h3>Intentos restantes: <span>{{attempts}}</span></h3>
-    </div>
-    <div class="col">
-      <!--      <button onclick="inicio()">Elegir otra palabra</button>-->
-      <button (click)="showBadgeClue()" [disabled]="lockClue">Dame una pista!</button>
-      <span id="hueco-pista"></span>
+      <div class="alert alert-success text-md-center" role="alert" *ngIf="isWinner">
+        <strong>Felicidades, </strong> sos el ganador!
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="isLoser">
+        La próxima será. Perdiste :(
+      </div>
     </div>
   </div>
-
-  <div class="flex-row">
+  <div class="row">
+    <div class="col scoring text-md-left">
+      <ul>
+        <li class="attemps">Intentos: {{attempts}}</li>
+        <li class="points">Puntos: {{points}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2 class="word" id="word"
+          *ngIf="this.hiddenWord.length>0">{{this.hiddenWord}}</h2>
+    </div>
+    <div class="col">
+      <picture>
+        <img *ngFor="let image of imagesName" [src]=image alt="hanged_part" id="image6" height="200">
+      </picture>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
     <div class="col">
       <div class="flex-row" id="screenKeyboard">
-        <button *ngFor="let letter of keyboard" (click)="try(letter.toUpperCase())"
+        <button class="btn btn-square btn-secondary" *ngFor="let letter of keyboard" (click)="try(letter.toUpperCase())"
                 [disabled]="shouldDisableLetter(letter)">{{letter}}</button>
       </div>
     </div>
     <div class="col">
-      <div class="alert alert-primary alert-outline alert-dismissible" role="alert" *ngIf="this.badgeClue">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
+      <button class="btn btn-square btn-info" (click)="resetGame()">Volver a jugar</button>
+      <button class="btn btn-square btn-info clueButton" (click)="showBadgeClue()" [disabled]="lockClue">Dame una pista!
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-primary alert-dismissible" role="alert" *ngIf="this.badgeClue">
         <div class="alert-message">
           <h4 class="alert-heading">Atención!</h4>
           <p>Tené en cuenta, que sólo podes solicitar una pista y al aceptar recibirla perderás un intento.</p>
           <p>Aún así... ¿Querés la pista?</p>
           <hr>
           <div class="btn-list">
-            <button class="btn btn-success" type="button" (click)="giveClue()">Si, dámela igual!</button>
-            <button class="btn btn-danger" type="button" (click)="this.badgeClue = !this.badgeClue">No, gracias.
-            </button>
+            <button class="btn btn-square btn-success" type="button" (click)="giveClue()">Si, dámela igual!</button>
+            <button class="btn btn-square btn-danger declineClue" type="button" (click)="this.badgeClue = !this.badgeClue">No, gracias</button>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="alert alert-primary alert-outline alert-dismissible" role="alert" *ngIf="this.win">
-        <div class="alert-message">
-          <h4 class="alert-heading">Felicitaciones!</h4>
-          <p>Tenemos un nuevo ganador!</p>
-          <hr>
-          <div class="btn-list">
-            <button class="btn btn-success" type="button">Quiero jugar de nuevo</button>
-            <button class="btn btn-danger" type="button">Salir
-            </button>
+      <div class="col" *ngIf="clueMessage.length>0">
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button (click)="this.clueMessage = ''" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <div class="alert-message">
+            <strong>Pista desbloqueada!</strong> {{this.clueMessage}}
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-6" *ngIf="clueMessage.length>0">
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button (click)="this.clueMessage = ''" type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-      <div class="alert-message">
-        <strong>Pista desbloqueada!</strong> {{this.clueMessage}}
       </div>
     </div>
   </div>

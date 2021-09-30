@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Imessage} from '../interfaces/imessage';
-import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {AuthService} from './auth.service';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
@@ -18,8 +18,11 @@ export class ChatService {
   }
 
   getMessages(): Observable<Imessage[]> {
-    this.itemsCollection = this.angularFirestore.collection<Imessage>('chats', ref => ref
-      .orderBy('date', 'desc'));
+    this.itemsCollection = this.angularFirestore.collection<Imessage>
+    ('chats', ref => ref
+      .orderBy('date', 'desc')
+      .limit(50)
+    );
     return this.itemsCollection.valueChanges().pipe(
       map((messages: Imessage[]) => {
         this.chats = [];
