@@ -1,23 +1,43 @@
 <div class="container">
   <div class="row">
+    <div class="col text-md-center">
+      <div class="alert alert-success" role="alert" *ngIf="guessedCard">
+        ¡Adivinaste!
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="notGuessedCard">
+        UPS! Le pifiaste...
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col text-md-center welcome">
-      <button class="btn btn-square btn-success">Comenzar</button>
+      <button class="btn btn-square btn-success" *ngIf="card === undefined" (click)="initGame()">Comenzar
+      </button>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="card !== undefined">
+    <div class="col text-md-center mt-6 board">
+      <ul>
+        <li>Puntos: {{points}}</li>
+        <li>Cartas restantes: {{totalCards}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" *ngIf="card">
     <div class="col text-md-center">
-      <h1>Puntos: 0</h1>
+      <img class="pokercard" [src]="card.imageUrl" [alt]="card.value">
     </div>
   </div>
-  <div class="row">
-    <div class="col text-md-center">
-      <h1>Carta</h1>
-    </div>
-  </div>
-  <div class="row">
+  <div class="row" *ngIf="showButtonsGame">
     <div class="col text-md-center decisionButtons">
-      <button class="btn btn-square btn-success">Mayor <i class="bi bi-arrow-bar-up"></i></button>
-      <button class="btn btn-square btn-danger">Menor <i class="bi bi-arrow-bar-down"></i></button>
+      <button class="btn btn-square btn-success" (click)="guess(1)">Mayor <i class="bi bi-arrow-bar-up"></i></button>
+      <button class="btn btn-square btn-danger" (click)="guess(0)">Menor <i class="bi bi-arrow-bar-down"></i></button>
+    </div>
+  </div>
+  <div class="row" *ngIf="finished">
+    <div class="col text-md-center decisionButtons">
+      <button class="btn btn-square btn-info" (click)="reset()">Jugar de nuevo <i class="bi bi-award"></i>
+      </button>
     </div>
   </div>
 </div>

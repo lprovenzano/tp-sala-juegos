@@ -1,7 +1,23 @@
-.welcome button{
+.welcome button {
   font-size: xx-large;
 }
 
-.decisionButtons button{
+.decisionButtons button {
   font-size: xx-large;
+}
+
+.pokercard {
+  margin-top: 5%;
+  margin-bottom: 5%
+}
+
+.board ul li {
+  list-style: none;
+  display: inline-flex;
+  font-size: xx-large;
+  padding-left: 5%;
+}
+
+.alert-success, .alert-danger{
+  padding: 1%;
 }

@@ -1,6 +1,6 @@
 export interface Ideck {
   success: boolean;
-  deckId: string;
+  deck_id: string;
   shuffled: boolean;
   remaining: number;
 }
