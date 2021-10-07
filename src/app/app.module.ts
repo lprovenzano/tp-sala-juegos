@@ -19,6 +19,7 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {FooterComponent} from './components/structure/footer/footer.component';
+import { PreguntadosComponent } from './components/games/preguntados/preguntados.component';
 
 @NgModule({
   declarations: [

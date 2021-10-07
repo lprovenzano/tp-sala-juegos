@@ -16,10 +16,15 @@ export class HomeComponent implements OnInit {
       path: '/games/hanged'
     },
     {
-      image_url: '/assets/images/games/higherorlower/higherorlower-thumbnail.jpg',
+      image_url: '/assets/images/games/higherorlower/higherorlower-tghumbnail.jpeg',
       title: 'Mayor o menor',
       description: 'El juego consiste en adivinar si la próxima carta del mazo es mayor o menor. Sumás un punto por cada tiro correcto.',
       path: '/games/higherorlower'
+    }, {
+      image_url: '/assets/images/games/preguntados/preguntados-thumbnail.jpeg',
+      title: 'Preguntados',
+      description: 'La sala de jugos pregunta, vos respondes. Sumas puntos por cada respuesta correcta!',
+      path: '/games/preguntados'
     }
   ];
 

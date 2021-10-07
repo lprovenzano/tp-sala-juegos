@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-md-center" *ngIf="selectedQuestion !== undefined">
+      <h1>{{selectedQuestion.title}}</h1>
+      <img [src]="selectedQuestion.urlImage" width="450" [alt]="selectedQuestion.title">
+    </div>
+  </div>
+  <div class="row" *ngIf="selectedQuestion !== undefined">
+    <div class="col buttons text-md-center" *ngFor="let q of selectedQuestion.options">
+      <button class="answerButton btn btn-pill btn-info">{{q.title}}</button>
+    </div>
+  </div>
+</div>
+

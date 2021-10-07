@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'higherorlower',
         canActivate: [AccessGuard],
         loadChildren: () => import('./higherorlower/higherorlower.module').then(m => m.HigherorlowerModule)
+      }, {
+        path: 'preguntados',
+        canActivate: [AccessGuard],
+        loadChildren: () => import('./preguntados/preguntados.module').then(m => m.PreguntadosModule)
       }
     ],
   }
