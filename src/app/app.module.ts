@@ -1,3 +1,5 @@
+import { HigherorlowerComponent } from './components/games/higherorlower/higherorlower.component';
+import { HangedComponent } from './components/games/hanged/hanged.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire';
@@ -27,7 +29,8 @@ import { PreguntadosComponent } from './components/games/preguntados/preguntados
     NavbarComponent,
     NotfoundComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HangedComponent
   ],
   imports: [
     BrowserModule,
