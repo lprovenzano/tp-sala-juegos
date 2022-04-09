@@ -17,7 +17,7 @@ export class AboutmeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const gameDescription = 'Do not fall! es un juego en el que tenes que ir sorteando obtáculos sin caerte.';
+    const gameDescription = '';
     const userId = 'lprovenzano';
     this.githubService.getUser(userId)
       .subscribe((resp) => {
