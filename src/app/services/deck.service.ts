@@ -7,7 +7,7 @@ import {Ipokercard} from '../interfaces/ipokercard';
 @Injectable({
   providedIn: 'root'
 })
-export class HigherorlowerService {
+export class DeckService {
 
   private url = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
 

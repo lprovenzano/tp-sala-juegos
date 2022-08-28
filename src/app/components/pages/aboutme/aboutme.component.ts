@@ -17,7 +17,7 @@ export class AboutmeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const gameDescription = '';
+    const gameDescription = 'El veintiuno, es un juego de aproximación con cartas en donde quien más cerca esté de la cifra, gana. Cualquier coincidencia con el blackjack, es mera casualidad.';
     const userId = 'lprovenzano';
     this.githubService.getUser(userId)
       .subscribe((resp) => {

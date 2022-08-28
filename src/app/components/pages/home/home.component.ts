@@ -25,6 +25,12 @@ export class HomeComponent implements OnInit {
       title: 'Preguntados',
       description: 'La sala de jugos pregunta, vos respondes. Sumas puntos por cada respuesta correcta!',
       path: '/games/preguntados'
+    },
+    {
+      image_url: '/assets/images/games/twentyone/veintiuno.png',
+      title: 'Veintiuno',
+      description: 'El que llega a 21 o el que esté más cerca, gana.',
+      path: '/games/twentyone'
     }
   ];
 

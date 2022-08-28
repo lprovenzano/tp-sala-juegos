@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HigherorlowerService} from '../../../services/higherorlower.service';
+import {DeckService} from '../../../services/deck.service';
 import {Ideck} from '../../../interfaces/ideck';
 import {Deck} from '../../../classes/deck';
 import {Ipokercard} from '../../../interfaces/ipokercard';
@@ -24,7 +24,7 @@ export class HigherorlowerComponent implements OnInit {
   public finished = false;
   public showButtonsGame = false;
 
-  constructor(private higherOrLowerService: HigherorlowerService) {
+  constructor(private higherOrLowerService: DeckService) {
 
   }
 

@@ -19,6 +19,11 @@ const routes: Routes = [
         path: 'preguntados',
         canActivate: [AccessGuard],
         loadChildren: () => import('./preguntados/preguntados.module').then(m => m.PreguntadosModule)
+      },
+      {
+        path: 'twentyone',
+        canActivate: [AccessGuard],
+        loadChildren: () => import('./twentyone/twentyone.module').then(m => m.TwentyoneModule)
       }
     ],
   }

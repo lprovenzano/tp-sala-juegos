@@ -22,6 +22,7 @@ import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {FooterComponent} from './components/structure/footer/footer.component';
 import { PreguntadosComponent } from './components/games/preguntados/preguntados.component';
+import { TwentyoneComponent } from './components/games/twentyone/twentyone.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PreguntadosComponent } from './components/games/preguntados/preguntados
     NotfoundComponent,
     HeaderComponent,
     FooterComponent,
-    HangedComponent
+    HangedComponent,
+    TwentyoneComponent
   ],
   imports: [
     BrowserModule,
