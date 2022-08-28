@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {DeckService} from '../../../services/deck.service';
-import {Ideck} from '../../../interfaces/ideck';
-import {Deck} from '../../../classes/deck';
 import {Ipokercard} from '../../../interfaces/ipokercard';
 import {Pokercard} from '../../../classes/pokercard';
 import {CardChoice} from '../../../classes/cardchoice';
@@ -12,8 +10,6 @@ import {CardChoice} from '../../../classes/cardchoice';
   styleUrls: ['./higherorlower.component.scss']
 })
 export class HigherorlowerComponent implements OnInit {
-
-  private deck = new Deck();
   public card: Pokercard | undefined;
   public points = 0;
   public isBegin = true;
@@ -23,19 +19,14 @@ export class HigherorlowerComponent implements OnInit {
   public notGuessedCard = false;
   public finished = false;
   public showButtonsGame = false;
+  private deckQuantity = 1;
 
-  constructor(private higherOrLowerService: DeckService) {
+  constructor(private deckService: DeckService) {
 
   }
 
   ngOnInit(): void {
-    this.higherOrLowerService.getDeck().toPromise()
-      .then((d: Ideck) => {
-        this.deck.deckId = d.deck_id;
-        this.deck.remaining = d.remaining;
-        this.deck.shuffled = d.shuffled;
-        this.deck.success = d.success;
-        this.higherOrLowerService.getCard(this.deck.deckId).toPromise()
+        this.deckService.getCards(this.deckQuantity).toPromise()
           .then((c: Ipokercard) => {
             // tslint:disable-next-line:no-shadowed-variable
             for (const {index, value} of c.cards.map((value, index) => ({index, value}))) {
@@ -47,8 +38,6 @@ export class HigherorlowerComponent implements OnInit {
               this.cards.push(pokerCard);
             }
           }).catch(error => console.error(error));
-      }).catch(error => console.error(error));
-    console.log('begin', this.cards);
   }
 
   initGame(): void {

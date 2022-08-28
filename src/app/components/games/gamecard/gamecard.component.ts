@@ -23,7 +23,6 @@ export class GamecardComponent implements OnInit {
 
   playGame(routeGame: string): void {
     const route = this.authService.isLoggedIn() ? routeGame : 'auth/login';
-    console.log(route);
     this.router.navigate([route]);
   }
 
