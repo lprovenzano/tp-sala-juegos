@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col text-md-center welcome">
+      <button class="btn btn-square btn-secondary" *ngIf="!beganGame" (click)="initGame()">Comenzar</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="beganGame && dealerCards.length > 0">
+    <div class="col-9">
+      <div class="row dealerArea text-md-center">
+        <h1 class="text-md-left playerName">Banca | Acumulado: {{dealerAccumulation}}</h1>
+        <div class="col-3" *ngFor="let card of dealerCards;let i = index">
+          <img class="gameCard dealerCard{{i+1}} " [src]="card.imageUrl"
+               [alt]="card.value">
+        </div>
+      </div>
+      <div class="row playerArea text-md-center" *ngIf="beganGame && playerCards.length > 0">
+        <div class="col-3" *ngFor="let card of playerCards;let i = index">
+          <img class="gameCard playerCard{{i+1}}" [src]="card.imageUrl" [alt]="card.value">
+        </div>
+        <h1 class="text-md-left playerName">Jugador | Acumulado: {{playerAccumulation}}</h1>
+      </div>
+    </div>
+    <div class="col-3" *ngIf="!playerWins && !dealerWins">
+      <button class="btn btn-square btn-success" (click)="newCard(false)">Pedir otra carta</button>
+      <button class="btn btn-square btn-danger" (click)="stop(false)">Basta para mi!</button>
+    </div>
+    <div class="col-3" *ngIf="playerWins">
+      <h1>Ganaste!</h1>
+    </div>
+    <div class="col-3" *ngIf="dealerWins">
+      <h1>Perdiste!</h1>
+    </div>
+    <div class="col-3" *ngIf="anyoneWins">
+      <h1>Hay empate!</h1>
+    </div>
+    <div class="col-3" *ngIf="playerWins || dealerWins || anyoneWins">
+      <button class="btn btn-square btn-success" (click)="reset()">Volver a jugar</button>
+    </div>
+  </div>
+</div>
