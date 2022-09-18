@@ -23,6 +23,7 @@ import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {FooterComponent} from './components/structure/footer/footer.component';
 import { PreguntadosComponent } from './components/games/preguntados/preguntados.component';
 import { TwentyoneComponent } from './components/games/twentyone/twentyone.component';
+import {ScoreService} from './services/score.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { TwentyoneComponent } from './components/games/twentyone/twentyone.compo
     LoadingBarRouterModule,
     LoadingBarModule
   ],
-  providers: [AuthService, NotificationService],
+  providers: [AuthService, NotificationService, ScoreService],
   bootstrap: [AppComponent]
 })
 

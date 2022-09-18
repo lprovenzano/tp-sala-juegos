@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Ihangedword} from 'src/app/interfaces/ihangedword';
 import {HangedService} from '../../../services/hanged.service';
+import {ScoreService} from '../../../services/score.service';
+import {Game} from '../../../classes/game';
 
 @Component({
   selector: 'app-hanged',
@@ -24,7 +26,9 @@ export class HangedComponent implements OnInit {
   isWinner = false;
   isLoser = false;
 
-  constructor(private hangedService: HangedService) {
+  allScores: any;
+
+  constructor(private hangedService: HangedService, private scoreService: ScoreService) {
   }
 
   ngOnInit(): void {
@@ -139,6 +143,9 @@ export class HangedComponent implements OnInit {
       this.isLoser = true;
       this.blockKeyboard();
       this.lockClue = true;
+    }
+    if ((this.isWinner || this.isLoser) && this.points > 0) {
+      this.scoreService.save(this.points, Game.HANGED);
     }
   }
 

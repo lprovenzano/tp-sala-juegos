@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DeckService} from '../../../services/deck.service';
 import {Ipokercard} from '../../../interfaces/ipokercard';
 import {Twentyonecard} from '../../../classes/twentyonecard';
+import {Game} from '../../../classes/game';
+import {ScoreService} from '../../../services/score.service';
 
 @Component({
   selector: 'app-twentyone',
@@ -10,6 +12,9 @@ import {Twentyonecard} from '../../../classes/twentyonecard';
 })
 export class TwentyoneComponent implements OnInit {
   public points = 0;
+  public wonHands = 0;
+  public lossesHands = 0;
+  public avgPoints = 0;
   public beganGame = false;
   public cards: Twentyonecard[] = [];
   public dealerCards: Twentyonecard[] = [];
@@ -27,7 +32,7 @@ export class TwentyoneComponent implements OnInit {
   private numbersCount = new Map();
 
 
-  constructor(private deckService: DeckService) {
+  constructor(private deckService: DeckService, private scoreService: ScoreService) {
   }
 
   ngOnInit(): void {
@@ -67,7 +72,7 @@ export class TwentyoneComponent implements OnInit {
         this.dealerWins = true;
       }
     }
-
+    this.resolvePoints();
   }
 
   public stop(isDealer: boolean) {
@@ -79,6 +84,7 @@ export class TwentyoneComponent implements OnInit {
         this.calculateAccumulation(this.dealerCards);
       }
       this.plant();
+      this.resolvePoints();
     }
   }
 
@@ -89,7 +95,14 @@ export class TwentyoneComponent implements OnInit {
     this.playerCards = [];
     this.playerWins = false;
     this.dealerWins = false;
+    this.anyoneWins = false;
     this.dealCardsToEverybody();
+  }
+
+  public leaveTable(){
+    if (this.avgPoints > 0) {
+      this.scoreService.save(this.avgPoints, Game.TWENTY_ONE);
+    }
   }
 
   private dealCardsToEverybody() {
@@ -98,8 +111,6 @@ export class TwentyoneComponent implements OnInit {
     this.dealCard(this.cards.pop(), true);
     this.playerAccumulation = this.calculateAccumulation(this.playerCards);
     this.dealerAccumulation = this.calculateAccumulation(this.dealerCards);
-    console.log('player: ', this.playerCards);
-    console.log('dealer: ', this.dealerCards);
   }
 
   private dealCard(card: Twentyonecard | undefined, isDealer: boolean) {
@@ -132,30 +143,7 @@ export class TwentyoneComponent implements OnInit {
   }
 
   private calculateAccumulation(cards: Twentyonecard[]): number {
-    const totalFlippedAmount = <number> cards.map(c => this.numbersCount.get(c.value)).reduce((a, b) => a + b);
-    return totalFlippedAmount;
-    // @ts-ignore
-    // if (!this.findValue('ACE', cards)) {
-    //   return totalFlippedAmount;
-    // }
-    // // @ts-ignore
-    // if (cards.length == 1 && cards.filter(c => c.isFlipped)[0].value == 'ACE') {
-    //   return this.numbersCount.get('ACE-ELEVEN');
-    // }
-    // if (cards.length > 1 && totalFlippedAmount < 21) {
-    //   return totalFlippedAmount + this.numbersCount.get('ACE');
-    // }
-    // if (cards.length == 2 && this.findValue('10', cards) || this.findValue('QUEEN', cards) || this.findValue('KING', cards) || this.findValue('JACK', cards)) {
-    //   return 21;
-    // } else {
-    //   return totalFlippedAmount + this.numbersCount.get('ACE-ELEVEN');
-    // }
-
-  }
-
-  private findValue(value: String, cards: Twentyonecard[]): boolean {
-    // @ts-ignore
-    return cards.map(c => c.value).indexOf(value) !== -1;
+    return <number> cards.map(c => this.numbersCount.get(c.value)).reduce((a, b) => a + b);
   }
 
   private plant() {
@@ -175,8 +163,15 @@ export class TwentyoneComponent implements OnInit {
       this.anyoneWins = true;
     }
     return;
-
   }
 
-
+  private resolvePoints() {
+    if (this.playerWins) {
+      this.wonHands += 1;
+    }
+    if (this.dealerWins) {
+      this.lossesHands += 1;
+    }
+    this.avgPoints = (((this.wonHands + this.lossesHands)) / 2);
+  }
 }

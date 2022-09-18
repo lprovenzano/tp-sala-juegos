@@ -6,8 +6,8 @@
   <div class="navbar-collapse collapse" *ngIf="authService.isLoggedIn() && user.email !== null">
     <ul class="navbar-nav navbar-align">
       <li class="nav-item dropdown">
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    91282
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="accumulatedPoints !== 0">
+    {{accumulatedPoints}}
     <span class="visually-hidden">unread messages</span>
   </span>
       </li>

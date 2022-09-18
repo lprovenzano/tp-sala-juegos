@@ -3,6 +3,8 @@ import {DeckService} from '../../../services/deck.service';
 import {Ipokercard} from '../../../interfaces/ipokercard';
 import {Pokercard} from '../../../classes/pokercard';
 import {CardChoice} from '../../../classes/cardchoice';
+import {ScoreService} from '../../../services/score.service';
+import {Game} from '../../../classes/game';
 
 @Component({
   selector: 'app-higherorlower',
@@ -21,7 +23,7 @@ export class HigherorlowerComponent implements OnInit {
   public showButtonsGame = false;
   private deckQuantity = 1;
 
-  constructor(private deckService: DeckService) {
+  constructor(private deckService: DeckService, private scoreService: ScoreService) {
 
   }
 
@@ -64,12 +66,14 @@ export class HigherorlowerComponent implements OnInit {
     this.points += this.guessedCard ? 3 : 0;
     this.card = card;
     if (card instanceof Pokercard) {
-      console.log('sent to deck> ', card);
       this.cards.push(card);
     }
     if (this.totalCards === 0) {
       this.finished = true;
       this.showButtonsGame = false;
+      if(this.points > 0){
+        this.scoreService.save(this.points, Game.HIGHER_OR_LOWER);
+      }
     }
   }
 
@@ -81,19 +85,15 @@ export class HigherorlowerComponent implements OnInit {
     this.finished = false;
     this.showButtonsGame = true;
     this.shuffle();
-    console.log('shuffle', this.cards);
   }
 
   // tslint:disable-next-line:typedef
   shuffle() {
     // tslint:disable-next-line:one-variable-per-declaration
     let currentIndex = this.cards.length, randomIndex;
-    // While there remain elements to shuffle...
     while (currentIndex !== 0) {
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      // And swap it with the current element.
       [this.cards[currentIndex], this.cards[randomIndex]] = [
         this.cards[randomIndex], this.cards[currentIndex]];
     }

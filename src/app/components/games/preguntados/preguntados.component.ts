@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PreguntadosService} from '../../../services/preguntados.service';
 import {Question} from '../../../classes/question';
+import {Game} from '../../../classes/game';
+import {ScoreService} from '../../../services/score.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -18,7 +20,7 @@ export class PreguntadosComponent implements OnInit {
   wellAnswers = 0;
   badAnswers = 0;
 
-  constructor(private preguntadosService: PreguntadosService) {
+  constructor(private preguntadosService: PreguntadosService, private scoreService: ScoreService) {
     this.getAllQuestionsAndAnswers();
   }
 
@@ -51,10 +53,13 @@ export class PreguntadosComponent implements OnInit {
     this.accumStats(option);
     this.isDisabled = true;
     this.userAnswer = option;
-    setTimeout(() => this.next(), 3500);
+    setTimeout(() => this.next(), 2000);
   }
 
   reset(): void {
+    if(this.points > 0){
+      this.scoreService.save(this.points, Game.PREGUNTADOS);
+    }
     this.points = 0;
     this.round = 1;
     this.wellAnswers = 0;
