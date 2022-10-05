@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NotfoundComponent} from './components/pages/notfound/notfound.component';
 import {AccessGuard} from './guards/access.guard';
+import {AdminGuard} from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
     path: 'survey',
     canActivate: [AccessGuard],
     loadChildren: () => import('./modules/survey/survey.module').then(m => m.SurveyModule)
+  },
+  {
+    path: 'answered-surveys',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./modules/answeredsourveys/answeredsourveys.module').then(m => m.AnsweredsourveysModule)
   },
   {
     path: '**',

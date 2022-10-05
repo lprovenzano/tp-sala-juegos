@@ -23,6 +23,7 @@ import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {FooterComponent} from './components/structure/footer/footer.component';
 import {TwentyoneComponent} from './components/games/twentyone/twentyone.component';
 import {ScoreService} from './services/score.service';
+import { AnsweredsurveysComponent } from './components/answeredsurveys/answeredsurveys.component';
 
 @NgModule({
   declarations: [

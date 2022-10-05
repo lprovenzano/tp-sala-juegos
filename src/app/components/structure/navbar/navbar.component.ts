@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   status = false;
 
-  constructor(public authService: AuthService, private renderer: Renderer2) {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {

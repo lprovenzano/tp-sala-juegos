@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-12 text-center" *ngIf="isLoading">
+    <span class="lds-hourglass"></span>
+  </div>
+  <div class="col-12" *ngIf="!isLoading">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Animal</th>
+        <th scope="col">Lugar de vacaciones</th>
+        <th scope="col">País</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Fecha</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let survey of surveys;index as i;">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{survey.user}}</td>
+        <td>{{survey.name}}</td>
+        <td>{{survey.lastName}}</td>
+        <td>{{survey.age}}</td>
+        <td>{{survey.animal}}</td>
+        <td>{{survey.holidayPlace}}</td>
+        <td>{{survey.country}}</td>
+        <td>{{survey.phoneNumber}}</td>
+        <td>{{this.parseDate(survey.date)}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

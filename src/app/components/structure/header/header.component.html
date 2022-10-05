@@ -26,6 +26,13 @@
           </div>
         </a>
       </li>
+      <li class="nav-item" *ngIf="this.authService.isAdmin()">
+        <a class="nav-icon" routerLink="/answered-surveys" id="lookSurveys">
+          <div class="position-relative">
+            <i class="bi bi-eye"></i> <p class="actionName">Ver encuestas</p>
+          </div>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-icon" routerLink="/chat" id="messagesDropdown">
           <div class="position-relative">

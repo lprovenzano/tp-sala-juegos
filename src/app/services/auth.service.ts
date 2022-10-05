@@ -44,6 +44,10 @@ export class AuthService {
   }
 
   getUserId(): string {
-    return JSON.parse(localStorage.getItem('user') as string).email
+    return JSON.parse(localStorage.getItem('user') as string).email;
+  }
+
+  isAdmin(): boolean {
+    return this.isLoggedIn() && this.getUserId() === 'admin@admin.com';
   }
 }

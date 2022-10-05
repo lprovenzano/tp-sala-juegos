@@ -8,10 +8,10 @@ export class Survey {
   private _holidayPlace: string;
   private _acceptTerms: boolean;
   private _user: string;
+  private _date: Date;
 
 
-
-  constructor(name: string, lastName: string, age: number, phoneNumber: number, country: string, animal: string, holidayPlace: string, acceptTerms: boolean, user: string) {
+  constructor(name: string, lastName: string, age: number, phoneNumber: number, country: string, animal: string, holidayPlace: string, acceptTerms: boolean, user: string, date: Date) {
     this._name = name;
     this._lastName = lastName;
     this._age = age;
@@ -21,6 +21,7 @@ export class Survey {
     this._holidayPlace = holidayPlace;
     this._acceptTerms = acceptTerms;
     this._user = user;
+    this._date = date;
   }
 
 
@@ -94,5 +95,13 @@ export class Survey {
 
   set user(value: string) {
     this._user = value;
+  }
+
+  get date(): Date {
+    return this._date;
+  }
+
+  set date(value: Date) {
+    this._date = value;
   }
 }

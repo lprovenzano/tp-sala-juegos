@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Survey} from '../../../classes/survey';
 import {AuthService} from '../../../services/auth.service';
 import {SurveyService} from '../../../services/survey.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-survey',
@@ -34,6 +34,7 @@ export class SurveyComponent implements OnInit {
   onSubmit() {
     this.answeredSurvey = this.survey.value
     this.answeredSurvey.user = this.authService.getUserId()
+    this.answeredSurvey.date = formatDate(new Date(), 'yyyy/MM/dd', 'en');
     this.surveyService.save(this.answeredSurvey)
     this.isAnswered = true;
   }
