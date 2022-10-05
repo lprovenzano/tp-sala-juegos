@@ -12,7 +12,7 @@
   </span>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">
+        <a class="nav-link user" href="#">
           <img
             src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
             class="avatar img-fluid rounded mr-1" alt="Charles Hall"/> <span
@@ -20,16 +20,23 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-icon" routerLink="/survey" id="survey">
+          <div class="position-relative">
+            <i class="bi bi-ui-checks"></i> <p class="actionName">Encuesta</p>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-icon" routerLink="/chat" id="messagesDropdown">
           <div class="position-relative">
-            <i class="bi bi-chat-left"></i>
+            <i class="bi bi-chat-left"></i> <p class="actionName">Chat</p>
           </div>
         </a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-icon" id="logout">
           <div class="position-relative">
-            <i class="bi bi-power" (click)="logout()"></i>
+            <i class="bi bi-power" (click)="logout()"></i> <p class="actionName">Salir</p>
           </div>
         </a>
       </li>

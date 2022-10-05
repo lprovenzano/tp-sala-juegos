@@ -1,5 +1,5 @@
-import { HigherorlowerComponent } from './components/games/higherorlower/higherorlower.component';
-import { HangedComponent } from './components/games/hanged/hanged.component';
+import {HigherorlowerComponent} from './components/games/higherorlower/higherorlower.component';
+import {HangedComponent} from './components/games/hanged/hanged.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire';
@@ -21,8 +21,7 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {FooterComponent} from './components/structure/footer/footer.component';
-import { PreguntadosComponent } from './components/games/preguntados/preguntados.component';
-import { TwentyoneComponent } from './components/games/twentyone/twentyone.component';
+import {TwentyoneComponent} from './components/games/twentyone/twentyone.component';
 import {ScoreService} from './services/score.service';
 
 @NgModule({

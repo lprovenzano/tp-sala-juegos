@@ -1,0 +1,115 @@
+<form class="row g-3" [formGroup]="survey" novalidate (ngSubmit)="onSubmit()" *ngIf="!isAnswered">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="inputEmail4" formControlName="name">
+    <div
+      class="error"
+      *ngIf="survey.get('name')?.hasError('required') && survey.get('name')?.touched">
+      <span class="error">Nombre requerido</span>
+    </div>
+    <div
+      class="error"
+      *ngIf="survey.get('name')?.hasError('minlength') && survey.get('name')?.touched">
+      <span class="error">Debe tener al menos 3 letras</span>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="inputPassword4" formControlName="lastName">
+    <div
+      class="error"
+      *ngIf="survey.get('lastName')?.hasError('required') && survey.get('lastName')?.touched">
+      <span class="error">Apellido requerido</span>
+    </div>
+    <div
+      class="error"
+      *ngIf="survey.get('lastName')?.hasError('minlength') && survey.get('lastName')?.touched">
+      <span class="error">Debe tener al menos 3 letras</span>
+    </div>
+  </div>
+  <div class="col-3">
+    <label for="inputAddress" class="form-label">Edad</label>
+    <input type="number" class="form-control" id="inputAddress" formControlName="age">
+    <div
+      class="error"
+      *ngIf="survey.get('age')?.hasError('required') && survey.get('age')?.touched">
+      <span class="error">Apellido requerido</span>
+    </div>
+    <div
+      class="error"
+      *ngIf="survey.get('age')?.hasError('min') && survey.get('age')?.touched">
+      <span class="error">Debes ser mayor de 18 años</span>
+    </div>
+    <div
+      class="error"
+      *ngIf="survey.get('age')?.hasError('max') && survey.get('age')?.touched">
+      <span class="error">Debes ser menor de 100 años</span>
+    </div>
+  </div>
+  <div class="col-9">
+    <label for="inputAddress2" class="form-label">Teléfono</label>
+    <input type="number" class="form-control" id="inputAddress2"
+           formControlName="phoneNumber">
+    <div
+      class="error"
+      *ngIf="survey.get('phoneNumber')?.hasError('required') && survey.get('phoneNumber')?.touched">
+      <span class="error">Número de teléfono requerido</span>
+    </div>
+    <div
+      class="error"
+      *ngIf="survey.get('phoneNumber')?.hasError('pattern') && survey.get('phoneNumber')?.touched">
+      <span class="error">Debe tener 10 números</span>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="inputPregunta1" class="form-label">Cuál es tu animal preferido?</label>
+    <input type="text" class="form-control" id="inputPregunta1" formControlName="animal">
+    <div
+      class="error"
+      *ngIf="survey.get('animal')?.hasError('required') && survey.get('animal')?.touched">
+      <span class="error">Tenés que responder esta pregunta</span>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="inputState" class="form-label">Cuál es tu país de residencia?</label>
+    <select id="inputState" class="form-select" formControlName="country">
+      <option value="argentina">Argentina</option>
+      <option value="brasil">Brasil</option>
+      <option value="chile">Chile</option>
+      <option value="peru">Perú</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
+  <div class="col-md-12">
+    <p>Si te vas de vacaciones. Que preferís?</p>
+    <label>
+      <input type="radio" value='playa' formControlName="holidayPlace">
+    </label>Playa
+    <label>
+      <input type="radio" value='montana' formControlName="holidayPlace">
+    </label>Montaña
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck" formControlName="acceptTerms">
+      <label class="form-check-label" for="gridCheck">
+        Acepto que con mi información hagan lo que quieran.
+      </label>
+      <div
+        class="error"
+        *ngIf="survey.get('acceptTerms')?.errors">
+        <span class="error">Tenés que aceptar esta política</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" [disabled]="survey.invalid" class="btn btn-primary">Enviar</button>
+  </div>
+</form>
+<div class="row" *ngIf="isAnswered">
+  <div class="col-12 flip-horizontal-bottom">
+    <div class="alert alert-success" role="alert">
+      Gracias por responder la encuesta!
+    </div>
+  </div>
+</div>

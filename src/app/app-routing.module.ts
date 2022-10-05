@@ -1,11 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AboutmeComponent} from './components/pages/aboutme/aboutme.component';
-import {HomeComponent} from './components/pages/home/home.component';
-import {LoginComponent} from './components/pages/login/login.component';
 import {NotfoundComponent} from './components/pages/notfound/notfound.component';
-import {SignupComponent} from './components/pages/signup/signup.component';
-import {ChatComponent} from './components/pages/chat/chat.component';
 import {AccessGuard} from './guards/access.guard';
 
 const routes: Routes = [
@@ -29,6 +24,11 @@ const routes: Routes = [
     path: 'games',
     canActivate: [AccessGuard],
     loadChildren: () => import('./modules/game/game.module').then(m => m.GameModule)
+  },
+  {
+    path: 'survey',
+    canActivate: [AccessGuard],
+    loadChildren: () => import('./modules/survey/survey.module').then(m => m.SurveyModule)
   },
   {
     path: '**',

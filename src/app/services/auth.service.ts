@@ -42,4 +42,8 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user') as string);
     return user !== null;
   }
+
+  getUserId(): string {
+    return JSON.parse(localStorage.getItem('user') as string).email
+  }
 }
