@@ -12,7 +12,7 @@ import {ScoreService} from '../../../services/score.service';
 export class PreguntadosComponent implements OnInit {
 
   questions = [];
-  selectedQuestion: Question | undefined;
+  selectedQuestion: any | undefined;
   userAnswer: boolean | undefined;
   isDisabled = false;
   round = 1;
@@ -21,32 +21,23 @@ export class PreguntadosComponent implements OnInit {
   badAnswers = 0;
 
   constructor(private preguntadosService: PreguntadosService, private scoreService: ScoreService) {
-    this.getAllQuestionsAndAnswers();
+
   }
 
   ngOnInit(): void {
-  }
-
-  getAllQuestionsAndAnswers(): void {
-    this.preguntadosService.getQuestionsWithAnswers().toPromise()
-      .then(
-        (questions: Question[]) => {
-          for (const question of questions) {
-            const newQuestion = new Question(question.id, question.title, question.options, question.urlImage);
-            // @ts-ignore
-            this.questions.push(newQuestion);
-          }
-          this.selectedQuestion = this.getRandomQuestion();
-        }
-      );
+    this.preguntadosService.getTriviaQuestions().subscribe(
+      (data: any) => {
+        this.questions = data;
+        this.getRandomQuestion();
+      },
+      (error: any) => {
+        console.log('Error:', error);
+      }
+    );
   }
 
   getRandomQuestion(): any {
-    let randomQuestion = this.questions[Math.floor(Math.random() * this.questions.length)] as Question;
-    if (randomQuestion.title === this.selectedQuestion?.title) {
-      randomQuestion = this.questions[Math.floor(Math.random() * this.questions.length)];
-    }
-    return randomQuestion;
+    this.selectedQuestion = this.questions[Math.floor(Math.random() * this.questions.length)] as any;
   }
 
   response(option: boolean): void {
@@ -76,7 +67,7 @@ export class PreguntadosComponent implements OnInit {
   private next(): void {
     this.userAnswer = undefined;
     this.isDisabled = false;
-    this.selectedQuestion = this.getRandomQuestion();
+    this.getRandomQuestion();
   }
 
 }

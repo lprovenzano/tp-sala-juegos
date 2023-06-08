@@ -33,14 +33,15 @@
     </div>
     <div class="row">
       <div class="col text-md-center" *ngIf="selectedQuestion !== undefined">
-        <h1>{{selectedQuestion.title}}</h1>
-        <img [src]="selectedQuestion.urlImage" width="500" height="500" [alt]="selectedQuestion.title">
+        <h1>{{selectedQuestion.question.text}}</h1>
       </div>
     </div>
     <div class="row" *ngIf="selectedQuestion !== undefined">
-      <div class="col buttons text-md-center" *ngFor="let q of selectedQuestion.options">
-        <button class="answerButton btn btn-pill btn-info"
-                (click)="response(q.isRight)" [disabled]="isDisabled">{{q.title}}</button>
+      <div class="col buttons text-md-center" *ngFor="let q of selectedQuestion.incorrectAnswers">
+        <button class="answerButton btn btn-pill btn-info" (click)="response(false)" [disabled]="isDisabled">{{q}}</button>
+      </div>
+      <div class="col buttons text-md-center">
+        <button class="answerButton btn btn-pill btn-info" (click)="response(true)" [disabled]="isDisabled">{{selectedQuestion.correctAnswer}}</button>
       </div>
     </div>
   </div>

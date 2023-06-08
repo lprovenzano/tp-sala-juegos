@@ -8,12 +8,12 @@ import {Question} from '../classes/question';
 })
 export class PreguntadosService {
 
-  URL_BASE = 'https://go-preguntados-backend.herokuapp.com/';
+  private apiUrl = 'https://the-trivia-api.com/v2/questions';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
-  getQuestionsWithAnswers(): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(this.URL_BASE);
+  getTriviaQuestions(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }

@@ -7,5 +7,8 @@
         ]
       }
     }
+  },
+  "projects": {
+    "default": "tp-sala-juegos-2023-luca-utn"
   }
 }
