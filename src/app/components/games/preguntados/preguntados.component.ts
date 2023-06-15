@@ -1,6 +1,6 @@
+import { PhotoService } from './../../../services/photo.service';
 import {Component, OnInit} from '@angular/core';
 import {PreguntadosService} from '../../../services/preguntados.service';
-import {Question} from '../../../classes/question';
 import {Game} from '../../../classes/game';
 import {ScoreService} from '../../../services/score.service';
 
@@ -19,8 +19,11 @@ export class PreguntadosComponent implements OnInit {
   points = 0;
   wellAnswers = 0;
   badAnswers = 0;
+  image = ''
 
-  constructor(private preguntadosService: PreguntadosService, private scoreService: ScoreService) {
+  constructor(private preguntadosService: PreguntadosService,
+    private scoreService: ScoreService,
+    private photoService:PhotoService) {
 
   }
 
@@ -38,6 +41,14 @@ export class PreguntadosComponent implements OnInit {
 
   getRandomQuestion(): any {
     this.selectedQuestion = this.questions[Math.floor(Math.random() * this.questions.length)] as any;
+    console.log('PREGUNTA SELECCIONADA: ')
+    console.log(this.selectedQuestion)
+    setTimeout(() => {
+      this.photoService.getPhotoByTopic(this.selectedQuestion.tags[0]).subscribe(p => {
+        const photo = p.results[0].urls.raw;
+        this.image = photo
+      })
+    }, 1100)
   }
 
   response(option: boolean): void {

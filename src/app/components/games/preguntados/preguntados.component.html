@@ -37,6 +37,7 @@
       </div>
     </div>
     <div class="row" *ngIf="selectedQuestion !== undefined">
+      <img [src]="this.image" width="500" height="500"/>
       <div class="col buttons text-md-center" *ngFor="let q of selectedQuestion.incorrectAnswers">
         <button class="answerButton btn btn-pill btn-info" (click)="response(false)" [disabled]="isDisabled">{{q}}</button>
       </div>

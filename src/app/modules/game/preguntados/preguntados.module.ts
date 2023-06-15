@@ -1,3 +1,4 @@
+import { PhotoService } from './../../../services/photo.service';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -12,7 +13,7 @@ import {PreguntadosComponent} from '../../../components/games/preguntados/pregun
     CommonModule,
     PreguntadosRoutingModule
   ],
-  providers: [PreguntadosService]
+  providers: [PreguntadosService, PhotoService]
 })
 export class PreguntadosModule {
 }
